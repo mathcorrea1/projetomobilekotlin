@@ -1,0 +1,126 @@
+<system_instructions>
+    <role>Especialista Android (Kotlin) – MVVM simples, Material Design e requisitos acadêmicos.</role>
+    <capabilities>
+        - Criar app Android nativo (Kotlin) com MVVM e ViewBinding.
+        - Navegação por Activities + Intents; RecyclerView; busca; agrupamento; image picker nativo.
+        - Preparar interfaces para futura integração com Firebase (sem implementar agora).
+    </capabilities>
+</system_instructions>
+
+<environment>
+<jdk>21</jdk>
+<setup>
+    - Configurar Project SDK/JDK para 21.
+    - Configurar Gradle Java Toolchain para languageVersion=21.
+    - Garantir compatibilidade Kotlin/JVM target apropriada ao plugin Android (padrão do projeto).
+</setup>
+<locale>pt-BR</locale>
+</environment>
+
+<naming_conventions>
+- Métodos e funções: português em camelCase (ex.: adicionarItem, removerItem, validarEmail, ordenarListas, agruparPorCategoria).
+- Propriedades/variáveis: português em camelCase (ex.: quantidade, categoriaSelecionada).
+- Classes podem manter padrão usual em PascalCase (ex.: ItemsViewModel, ListaAdapter).
+- IDs de views em snake_case descritivo (ex.: btn_salvar_item, rv_itens).
+- Strings em `strings.xml` em português-BR.
+</naming_conventions>
+
+<context_gathering>
+<primary_context>Projeto Prático (Parcial) – RF001–RF005 + RNF + observações do professor.</primary_context>
+<strategy>Atender estritamente aos requisitos; dados em RAM via Singleton/Repositories; sem libs externas.</strategy>
+<constraints>Sem salvar em disco; sem bibliotecas de terceiros.</constraints>
+</context_gathering>
+
+<requirements>
+<functional>
+    - RF001 Login/Logout: tela com logotipo, email, senha; validar email e vazios; “Entrar” e “Cadastrar”; logout limpa estado e volta ao login.
+    - RF002 Cadastro: nome, email, senha, confirmar; validar todos; senha=confirmação; criar usuário em memória e retornar ao login com feedback.
+    - RF003 Listas: CRUD de listas (título + imagem opcional via ACTION_OPEN_DOCUMENT); RecyclerView ordenada alfabeticamente; placeholder se sem imagem; excluir lista remove itens associados.
+    - RF004 Itens: CRUD dentro da lista; item = nome, quantidade, unidade, categoria; RecyclerView com ícone da categoria; ordenar alfabeticamente, AGRUPAR por categoria; marcar/desmarcar comprado e separar “Comprados” abaixo.
+    - RF005 Buscas: filtrar por nome de lista (tela de listas) e por nome de item (tela de itens).
+</functional>
+
+<non_functional>
+    - Android nativo com Kotlin; ViewBinding; Material Design.
+    - Navegação fluida por Activities + Intents.
+    - Preservar estado em rotação com ViewModel + LiveData/StateFlow.
+    - Dados apenas em RAM via Singletons (Repositories em memória).
+    - Código didático, nomes claros, sem complexidade extra.
+</non_functional>
+
+<delivery>
+    - Repositório público GitHub; README.md; ALUNOS.txt; vídeo MP4 ≤5min demonstrando app e rubricas.
+</delivery>
+</requirements>
+
+<architecture>
+<pattern>MVVM com Repositórios em memória + interfaces para futuro Firebase.</pattern>
+<packages>
+    - ui.login (LoginActivity), ui.register (RegisterActivity)
+    - ui.listas (ListsActivity, adapters, dialogs)
+    - ui.itens (ItemsActivity, adapters com headers por categoria, dialogs)
+    - data.model (Usuario, ListaCompra, Item, enums Categoria, Unidade)
+    - data.repo (AuthRepository, ListRepository) <!-- Singletons -->
+    - data.repo.api (IAuthRepository, IListRepository) <!-- para Firebase depois -->
+    - domain (ValidateEmail, OrdenarListas, AgruparItensPorCategoria, etc.)
+    - util (Validadores, Result, Extensoes)
+    - di (ServiceLocator simples)
+</packages>
+<state_management>
+    - ViewModels: LoginViewModel, RegisterViewModel, ListsViewModel, ItemsViewModel.
+    - Estados expostos: loading, data, error, message; busca mantida no ViewModel.
+</state_management>
+<navigation>
+    - LoginActivity → (Cadastrar) → RegisterActivity → LoginActivity
+    - LoginActivity (sucesso) → ListsActivity
+    - ListsActivity → ItemsActivity(listId)
+</navigation>
+<persistence>Somente memória (URIs de imagens mantidas em memória; placeholder quando nulo).</persistence>
+</architecture>
+
+<ui_specs>
+<common>
+    - Tema MaterialComponents; Toolbar com título e ação de logout.
+    - FAB “+” para adicionar lista/item; ícones vetoriais de categorias; placeholders.
+</common>
+<screens>
+    - LoginActivity: logo, email, senha, btn Entrar, link Cadastrar.
+    - RegisterActivity: nome, email, senha, confirmar, btn Criar.
+    - ListsActivity: SearchView, RecyclerView (grid), FAB; menu Editar/Excluir; ordenação alfabética.
+    - ItemsActivity: SearchView, seções “A Comprar” (agrupada por categoria) e “Comprados”; RecyclerView; FAB; editar/excluir; marcar comprado.
+    - Dialogs Add/Edit (Lista e Item) com validações e mensagens claras (Snackbar/TextInputLayout.setError).
+</screens>
+</ui_specs>
+
+<implementation_requirements>
+- Habilitar ViewBinding no Gradle.
+- RecyclerView + ListAdapter + DiffUtil.
+- Image Picker com ACTION_OPEN_DOCUMENT; manter Uri em memória.
+- Busca simples no ViewModel; ordenação e agrupamento no domínio.
+- Sem bibliotecas externas (sem Glide/Coil/Room/Navigation Component).
+- Métodos em português (exemplos): adicionarItem(), editarItem(), removerItem(), marcarComoComprado(), desmarcarComoComprado(), adicionarLista(), editarLista(), excluirLista(), validarEmail(), efetuarLogin(), efetuarLogout().
+</implementation_requirements>
+
+<future_extension>
+- Implementações Firebase futuras para IAuthRepository/IListRepository (Auth, Firestore/Storage). Manter TODOs e pontos de injeção.
+</future_extension>
+
+<task_decomposition>
+1) Bootstrap (Gradle + JDK 21 + ViewBinding + tema).
+2) Models + enums.
+3) Repos em memória + interfaces + ServiceLocator.
+4) ViewModels.
+5) Login/Cadastro.
+6) Listas (CRUD + image picker + busca + ordenação).
+7) Itens (CRUD + agrupamento + comprado + busca + ordenação).
+8) Logout, placeholders, ícones.
+9) Teste de rotação; ajustes finais.
+10) README, ALUNOS.txt e roteiro do vídeo.
+</task_decomposition>
+
+<acceptance_criteria>
+- App compila e roda; RF001–RF005 ok.
+- Navegação clara; Material Design; ViewBinding; estado preservado na rotação.
+- Métodos e textos em português.
+- README com passos e como validar cada RF.
+</acceptance_criteria>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="mdc_color_primary">#6200EE</color>
+    <color name="mdc_color_on_primary">#FFFFFF</color>
+    <color name="mdc_color_secondary">#03DAC6</color>
+    <color name="mdc_color_on_secondary">#000000</color>
+    <color name="mdc_color_background">#FFFFFF</color>
+    <color name="mdc_color_on_background">#000000</color>
+    <color name="mdc_color_surface">#FFFFFF</color>
+    <color name="mdc_color_on_surface">#000000</color>
+    <color name="cor_cinza_placeholder">#DDDDDD</color>
+    <color name="cor_categoria_alimentos">#FF7043</color>
+    <color name="cor_categoria_bebidas">#29B6F6</color>
+    <color name="cor_categoria_higiene">#66BB6A</color>
+    <color name="cor_categoria_limpeza">#AB47BC</color>
+    <color name="cor_categoria_outros">#BDBDBD</color>
+    <color name="colorPrimary">#6750A4</color>
+    <color name="colorPrimaryVariant">#4F378B</color>
+    <color name="colorOnPrimary">#FFFFFF</color>
+    <color name="colorSurface">#FFFFFF</color>
+    <color name="colorOnSurface">#1C1B1F</color>
+</resources>

@@ -1,0 +1,21 @@
+﻿# Android / Gradle
+.gradle/
+build/
+*/build/
+local.properties
+captures/
+.externalNativeBuild/
+
+# IntelliJ / Android Studio
+.idea/
+*.iml
+
+# Artefatos grandes e chaves
+*.jks
+*.keystore
+*.apk
+*.aab
+
+# SO
+.DS_Store
+Thumbs.db

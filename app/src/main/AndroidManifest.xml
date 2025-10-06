@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_placeholder"
+        android:label="@string/app_name"
+        android:roundIcon="@drawable/ic_placeholder"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.ProjetoProgramacaoMobileParte1">
+        <activity
+            android:name=".ui.itens.EditItemActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.itens.AddItemActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.itens.ItemsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.listas.AddListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.listas.EditListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.listas.ListsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.register.RegisterActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.login.LoginActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Projeto Programação Mobile Parte 1</string>
+    <string name="titulo_login">Acesse sua conta</string>
+    <string name="hint_email">E-mail</string>
+    <string name="hint_senha">Senha</string>
+    <string name="btn_entrar">Acessar</string>
+    <string name="btn_cadastrar">Criar Conta</string>
+    <string name="descricao_logo">Logotipo do aplicativo</string>
+    <string name="link_cadastrar">Cadastrar</string>
+
+    <string name="titulo_cadastro">Cadastro</string>
+    <string name="hint_nome">Nome</string>
+    <string name="hint_confirmar_senha">Confirmar senha</string>
+    <string name="btn_criar_conta">Criar conta</string>
+
+    <string name="titulo_listas">Minhas Listas</string>
+    <string name="hint_buscar_lista">Buscar lista…</string>
+    <string name="msg_lista_vazia">Nenhuma lista cadastrada</string>
+    <string name="titulo_nova_lista">Nova lista</string>
+    <string name="titulo_editar_lista">Editar lista</string>
+    <string name="hint_titulo_lista">Título da lista</string>
+    <string name="btn_escolher_imagem">Escolher imagem</string>
+    <string name="acao_editar">Editar</string>
+    <string name="acao_excluir">Excluir</string>
+    <string name="titulo_adicionar_lista">Adicionar Lista</string>
+    <string name="btn_adicionar">Adicionar</string>
+    <string name="descricao_previa_imagem">Prévia da imagem selecionada</string>
+
+    <string name="titulo_itens">Itens</string>
+    <string name="hint_buscar_item">Buscar item…</string>
+    <string name="secao_a_comprar">A Comprar</string>
+    <string name="secao_comprados">Comprados</string>
+    <string name="titulo_novo_item">Novo item</string>
+    <string name="titulo_editar_item">Editar item</string>
+    <string name="hint_nome_item">Nome do item</string>
+    <string name="hint_quantidade">Quantidade</string>
+    <string name="hint_unidade">Unidade</string>
+    <string name="hint_categoria">Categoria</string>
+    <string name="btn_salvar">Salvar</string>
+    <string name="detalhe_item">%1$.2f %2$s</string>
+
+    <string name="erro_campo_obrigatorio">Campo obrigatório</string>
+    <string name="erro_email_invalido">E-mail inválido</string>
+    <string name="erro_senhas_diferentes">As senhas não conferem</string>
+    <string name="msg_conta_criada">Conta criada! Faça login.</string>
+    <string name="msg_logout">Sessão encerrada.</string>
+    <string name="msg_item_removido">Item removido</string>
+    <string name="msg_lista_removida">Lista removida</string>
+    <string name="acao_logout">Sair</string>
+</resources>

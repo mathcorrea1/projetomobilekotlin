@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_editar"
+        android:title="@string/acao_editar" />
+    <item
+        android:id="@+id/menu_excluir"
+        android:title="@string/acao_excluir" />
+    <item
+        android:id="@+id/menu_imagem"
+        android:title="@string/btn_escolher_imagem" />
+</menu>
+
