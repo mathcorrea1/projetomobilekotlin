@@ -17,7 +17,8 @@
             android:layout_width="match_parent"
             android:layout_height="120dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/ic_placeholder" />
+            android:src="@drawable/ic_logo"
+            android:contentDescription="@string/descricao_logo" />
 
         <TextView
             android:id="@+id/txtTitulo"
@@ -28,4 +29,3 @@
             android:paddingTop="8dp" />
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>
-

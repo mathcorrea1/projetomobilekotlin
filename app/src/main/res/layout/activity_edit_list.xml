@@ -29,7 +29,8 @@
             android:layout_width="@dimen/logo_size"
             android:layout_height="@dimen/logo_size"
             android:contentDescription="@string/descricao_logo"
-            android:src="@drawable/ic_placeholder"
+            app:srcCompat="@drawable/ic_logo"
+            app:tint="@null"
             app:layout_constraintTop_toBottomOf="@id/toolbar"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
