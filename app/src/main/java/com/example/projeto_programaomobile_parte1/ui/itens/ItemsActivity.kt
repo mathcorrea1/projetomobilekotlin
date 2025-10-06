@@ -87,7 +87,6 @@ class ItemsActivity : AppCompatActivity() {
 
         val adapter = ItemAdapter(
             onEditar = { item -> abrirTelaEditarItem(item) },
-            onExcluir = { item -> vm.removerItem(item.id) },
             onAlternarComprado = { item -> vm.alternarComprado(item) }
         )
         binding.rvItens.layoutManager = LinearLayoutManager(this)

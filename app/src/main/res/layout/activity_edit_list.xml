@@ -10,7 +10,9 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingHorizontal="@dimen/sp_16">
+        android:paddingTop="@dimen/sp_24"
+        android:paddingHorizontal="@dimen/sp_16"
+        android:paddingBottom="@dimen/sp_16">
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar"

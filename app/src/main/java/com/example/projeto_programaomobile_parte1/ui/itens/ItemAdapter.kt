@@ -18,7 +18,6 @@ sealed class LinhaItem {
 
 class ItemAdapter(
     private val onEditar: (Item) -> Unit,
-    private val onExcluir: (Item) -> Unit,
     private val onAlternarComprado: (Item) -> Unit
 ) : ListAdapter<LinhaItem, RecyclerView.ViewHolder>(DIFF) {
 
@@ -49,7 +48,7 @@ class ItemAdapter(
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (val linha = getItem(position)) {
             is LinhaItem.Header -> (holder as HeaderVH).bind(linha.titulo)
-            is LinhaItem.ItemLinha -> (holder as ItemVH).bind(linha.item, onEditar, onExcluir, onAlternarComprado)
+            is LinhaItem.ItemLinha -> (holder as ItemVH).bind(linha.item, onEditar, onAlternarComprado)
         }
     }
 
@@ -58,7 +57,7 @@ class ItemAdapter(
     }
 
     class ItemVH(private val b: ItemItemBinding) : RecyclerView.ViewHolder(b.root) {
-        fun bind(item: Item, onEditar: (Item) -> Unit, onExcluir: (Item) -> Unit, onAlternar: (Item) -> Unit) {
+        fun bind(item: Item, onEditar: (Item) -> Unit, onAlternar: (Item) -> Unit) {
             b.txtNome.text = item.nome
             val ctx = b.root.context
             b.txtDetalhe.text = ctx.getString(com.example.projeto_programaomobile_parte1.R.string.detalhe_item, item.quantidade, item.unidade.toString())
@@ -76,7 +75,6 @@ class ItemAdapter(
             }
             b.imgCategoria.setImageResource(iconRes)
             b.root.setOnClickListener { onEditar(item) }
-            b.root.setOnLongClickListener { onExcluir(item); true }
         }
     }
 }

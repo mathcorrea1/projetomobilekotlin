@@ -10,7 +10,9 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingHorizontal="@dimen/sp_16">
+        android:paddingTop="@dimen/sp_24"
+        android:paddingHorizontal="@dimen/sp_16"
+        android:paddingBottom="@dimen/sp_16">
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar"
@@ -137,12 +139,14 @@
             style="@style/Widget.App.BotaoPrimario"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/sp_24"
+            android:layout_marginTop="@dimen/sp_12"
             android:text="@string/btn_criar_conta"
-            app:layout_constraintTop_toBottomOf="@id/inputConfirmarSenha"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" />
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/inputConfirmarSenha"
+            app:layout_constraintVertical_bias="0.184" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>
