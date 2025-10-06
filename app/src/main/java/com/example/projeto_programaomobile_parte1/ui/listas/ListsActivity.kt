@@ -8,6 +8,7 @@ import android.widget.SearchView
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.PopupMenu
+import androidx.core.content.FileProvider
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.projeto_programaomobile_parte1.R
@@ -16,13 +17,16 @@ import com.example.projeto_programaomobile_parte1.databinding.ActivityListsBindi
 import com.example.projeto_programaomobile_parte1.di.ServiceLocator
 import com.example.projeto_programaomobile_parte1.ui.login.LoginActivity
 import com.example.projeto_programaomobile_parte1.viewmodel.ListsViewModel
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
+import java.io.File
 
 class ListsActivity : AppCompatActivity() {
     private lateinit var binding: ActivityListsBinding
     private lateinit var vm: ListsViewModel
 
     private var listaSelecionadaParaImagem: ListaCompra? = null
+    private var imagemCameraUri: Uri? = null
 
     private val abrirDocumento = registerForActivityResult(ActivityResultContracts.OpenDocument()) { uri: Uri? ->
         val lista = listaSelecionadaParaImagem
@@ -30,6 +34,15 @@ class ListsActivity : AppCompatActivity() {
             vm.editarLista(lista.id, lista.titulo, uri)
         }
         listaSelecionadaParaImagem = null
+    }
+
+    private val tirarFoto = registerForActivityResult(ActivityResultContracts.TakePicture()) { sucesso: Boolean ->
+        val lista = listaSelecionadaParaImagem
+        if (sucesso && imagemCameraUri != null && lista != null) {
+            vm.editarLista(lista.id, lista.titulo, imagemCameraUri)
+        }
+        listaSelecionadaParaImagem = null
+        imagemCameraUri = null
     }
 
     private val novaListaLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
@@ -139,6 +152,36 @@ class ListsActivity : AppCompatActivity() {
 
     private fun selecionarImagemPara(lista: ListaCompra) {
         listaSelecionadaParaImagem = lista
+        mostrarDialogoEscolhaImagem()
+    }
+
+    private fun mostrarDialogoEscolhaImagem() {
+        MaterialAlertDialogBuilder(this)
+            .setTitle(R.string.titulo_escolher_origem_imagem)
+            .setItems(arrayOf(
+                getString(R.string.opcao_camera),
+                getString(R.string.opcao_galeria)
+            )) { _, which ->
+                when (which) {
+                    0 -> abrirCamera()
+                    1 -> abrirGaleria()
+                }
+            }
+            .show()
+    }
+
+    private fun abrirCamera() {
+        val imagemArquivo = File(cacheDir, "foto_${System.currentTimeMillis()}.jpg")
+        val uri = FileProvider.getUriForFile(
+            this,
+            "${packageName}.fileprovider",
+            imagemArquivo
+        )
+        imagemCameraUri = uri
+        tirarFoto.launch(uri)
+    }
+
+    private fun abrirGaleria() {
         abrirDocumento.launch(arrayOf("image/*"))
     }
 }

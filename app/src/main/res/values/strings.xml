@@ -48,4 +48,7 @@
     <string name="msg_item_removido">Item removido</string>
     <string name="msg_lista_removida">Lista removida</string>
     <string name="acao_logout">Sair</string>
+    <string name="titulo_escolher_origem_imagem">Escolher origem da imagem</string>
+    <string name="opcao_camera">Tirar foto</string>
+    <string name="opcao_galeria">Escolher da galeria</string>
 </resources>

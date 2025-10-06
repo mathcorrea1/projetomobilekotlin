@@ -6,7 +6,11 @@ import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.FileProvider
+import com.example.projeto_programaomobile_parte1.R
 import com.example.projeto_programaomobile_parte1.databinding.ActivityEditListBinding
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import java.io.File
 
 class EditListActivity : AppCompatActivity() {
 
@@ -19,12 +23,20 @@ class EditListActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityEditListBinding
     private var imagemSelecionada: Uri? = null
+    private var imagemCameraUri: Uri? = null
     private var listaId: String = ""
 
     private val abrirDocumento = registerForActivityResult(ActivityResultContracts.OpenDocument()) { uri: Uri? ->
         if (uri != null) {
             imagemSelecionada = uri
             binding.imgPreview.setImageURI(uri)
+        }
+    }
+
+    private val tirarFoto = registerForActivityResult(ActivityResultContracts.TakePicture()) { sucesso: Boolean ->
+        if (sucesso && imagemCameraUri != null) {
+            imagemSelecionada = imagemCameraUri
+            binding.imgPreview.setImageURI(imagemCameraUri)
         }
     }
 
@@ -45,7 +57,7 @@ class EditListActivity : AppCompatActivity() {
         imagemInicial?.let { binding.imgPreview.setImageURI(it) }
 
         binding.btnEscolherImagem.setOnClickListener {
-            abrirDocumento.launch(arrayOf("image/*"))
+            mostrarDialogoEscolhaImagem()
         }
 
         binding.btnSalvar.setOnClickListener {
@@ -70,5 +82,35 @@ class EditListActivity : AppCompatActivity() {
             setResult(RESULT_OK, data)
             finish()
         }
+    }
+
+    private fun mostrarDialogoEscolhaImagem() {
+        MaterialAlertDialogBuilder(this)
+            .setTitle(R.string.titulo_escolher_origem_imagem)
+            .setItems(arrayOf(
+                getString(R.string.opcao_camera),
+                getString(R.string.opcao_galeria)
+            )) { _, which ->
+                when (which) {
+                    0 -> abrirCamera()
+                    1 -> abrirGaleria()
+                }
+            }
+            .show()
+    }
+
+    private fun abrirCamera() {
+        val imagemArquivo = File(cacheDir, "foto_${System.currentTimeMillis()}.jpg")
+        val uri = FileProvider.getUriForFile(
+            this,
+            "${packageName}.fileprovider",
+            imagemArquivo
+        )
+        imagemCameraUri = uri
+        tirarFoto.launch(uri)
+    }
+
+    private fun abrirGaleria() {
+        abrirDocumento.launch(arrayOf("image/*"))
     }
 }

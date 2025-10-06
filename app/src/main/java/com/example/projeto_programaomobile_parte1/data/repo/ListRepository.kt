@@ -23,10 +23,12 @@ object ListRepository : IListRepository {
     }
 
     override fun editarLista(id: String, novoTitulo: String, novaImagem: Uri?): Resultado<ListaCompra> {
-        val l = listas.find { it.id == id } ?: return Resultado.Erro("Lista não encontrada")
-        l.titulo = novoTitulo
-        l.imagemUri = novaImagem
-        return Resultado.Sucesso(l)
+        val idx = listas.indexOfFirst { it.id == id }
+        if (idx == -1) return Resultado.Erro("Lista não encontrada")
+
+        val listaAtualizada = ListaCompra(id, novoTitulo, novaImagem)
+        listas[idx] = listaAtualizada
+        return Resultado.Sucesso(listaAtualizada)
     }
 
     override fun excluirLista(id: String): Resultado<Unit> {
