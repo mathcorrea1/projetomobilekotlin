@@ -57,8 +57,6 @@ O projeto foi desenvolvido como parte da disciplina **Programação Mobile I**, 
 * Matheus Da Silva Correa	
 * Lucas Queiroz
 
-## 📚 Contexto Acadêmico
+## 🏁 Status do Projeto
 
-Projeto desenvolvido para a disciplina Programação Mobile I, com o objetivo de aplicar conceitos de desenvolvimento Android nativo, manipulação de dados em memória e boas práticas de usabilidade segundo as diretrizes do Material Design.
-
-
+✅ Concluído — versão funcional, com arquitetura MVVM e código preparado para integração futura com o Firebase.
